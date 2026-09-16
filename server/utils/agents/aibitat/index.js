@@ -908,14 +908,6 @@ ${this.getHistory({ to: route.to })
       }
     }
 
-    const messages = [
-      {
-        content: fromConfig.role,
-        role: "system",
-      },
-      ...chatHistory,
-    ];
-
     // get the functions that the node can call
     let functions = fromConfig.functions
       ?.map((name) => this.functions.get(this.#parseFunctionName(name)))
@@ -947,6 +939,23 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
         }
       }
     }
+
+    const messages = [
+      {
+        content: fromConfig.role,
+        role: "system",
+      },
+    ];
+    const toolGuidance = functions
+      ?.map((fn) => fn.agentGuidance)
+      .filter((guidance) => typeof guidance === "string" && guidance.trim());
+    if (toolGuidance?.length) {
+      messages.push({
+        role: "system",
+        content: `Guidance for the tools available in this conversation:\n\n${toolGuidance.join("\n\n")}`,
+      });
+    }
+    messages.push(...chatHistory);
 
     // Re-evaluate model router before each turn if a resolver is attached.
     // This ensures routing rules are applied per-message, not just at initialization.
@@ -1545,7 +1554,8 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
   /**
    * Register a new function to be called by the AIbitat agents.
    * You are also required to specify the which node can call the function.
-   * @param functionConfig The function configuration.
+   * @param functionConfig The function configuration, optionally including
+   * agentGuidance that is shown only to agents with access to this function.
    */
   function(functionConfig) {
     this.functions.set(functionConfig.name, functionConfig);

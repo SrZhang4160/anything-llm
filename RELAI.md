@@ -32,3 +32,7 @@ The production OpenAI agent using `gpt-4.1-nano` passed 2/6 training checks and 
 Local reports are `.relai/runs/document-grounding-baseline.json` and `.relai/runs/document-grounding-heldout-baseline.json`. The task is `.relai/harbor/tasks/document-grounding`; held-out variants are kept outside the training task directory.
 
 Set runtime `STORAGE_DIR=/app/server/storage` for the container's writable model cache. The local Harbor loader uses `scripts/relai_harbor_compat.py` to fall back to a read-only `cat` of the exact ATIF trajectory when Docker Desktop's copy operation fails on a read-only mount. It does not change evaluation scores or disable repository masking.
+
+## First optimizer result
+
+The bounded optimizer run completed and uploaded its result to RELAI. It rejected its first candidate and accepted a second candidate adding tool-scoped grounding guidance and source-labeled retrieval evidence. The final comparison against the initial agent remained 2/6 to 2/6. One held-out run changed from 1/6 to 2/6. The improvement observed during candidate selection was an abstention case, not successful retrieval of answerable facts; these small, stochastic results do not establish a general improvement. The candidate remains in a draft PR for review, with no merge or deployment. All 16 focused agent, memory-tool, and trajectory tests passed. Incidental executable-bit changes from the optimizer were excluded.
