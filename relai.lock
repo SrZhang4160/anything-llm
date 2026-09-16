@@ -1,0 +1,317 @@
+{
+  "schema_version": "relai.lock.v1",
+  "agent": {
+    "uuid": "agent-900c92b435624382b58675c5b7089f30",
+    "name": "anything-llm"
+  },
+  "state": "1e350e9731b04dcdb41294e9fb1290e84c1d8f3e746a3e0b67946ec034187b66",
+  "pins": {
+    "files": {
+      "harbor": {
+        "README.md": {
+          "hash": "0a59468ae24ff5be4fe025c707b2e2411d916c975f01956e4b85753ace4af7c5"
+        },
+        "adapter/anythingllm_adapter.js": {
+          "hash": "acdfe292278cfc92ee8add79cb4e8aed1468ffdac8634e830af492fca4c7c7cd"
+        },
+        "adapter/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "agent.toml": {
+          "hash": "7ba8c3af45873c5e24cfb8f28bfc71b339e6030ab940f3542c95c12c8566fc6f"
+        },
+        "check.sh": {
+          "hash": "0d70a445919c0ed49954d03854c29e82e60f2eba06984a991c3da4860818a3af"
+        },
+        "harbor_agent.py": {
+          "hash": "d3e256341cc81ededbc73eea474e3a8fa2496229f6cd32fcdc416b289ed99c49"
+        },
+        "init-expectations.snapshot.json": {
+          "hash": "2dcae041aede458a247179746e537a9b50b95701aaa072775b049e6222df4a04"
+        },
+        "install.sh": {
+          "hash": "d21ee8c0a332fc38e97f9cfbf1e41865e0ca040403e1a1f3b94bde25c1331d38"
+        },
+        "sitecustomize.py": {
+          "hash": "3141cbcb3f9f91b58b662ca044ce3f8ba7955dfa4432dd6b438a068fadab3122"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/README.md": {
+          "hash": "fcae16c9ae59d15a8d997f36fd4c0a2850ee5c60ec5db6792e2e0addc403ddc9"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/environment/Dockerfile": {
+          "hash": "dad0448eaaa8bf6b7b2884c2e768f066c1e326d8dd4d23c7a05b38c503b9ba21"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/environment/anythingllm_adapter.js": {
+          "hash": "009fd3054bf5445f2041bf48841bb62a0dd0a0bd04a01d28187f46e6dfff42fe"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/environment/relai_harbor/adapter/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/environment/scenario.json": {
+          "hash": "2dba4e4c109166e6477fba65074cce95cf9a0fac84a167beb62bc07b6edd2189"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/generated/build.json": {
+          "hash": "a3841b8dd16c5a764190d444100c483554eda322ce0d092b89337f4f50c6c56f"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/generated/runtime/inputs/anythingllm_adapter.js": {
+          "hash": "009fd3054bf5445f2041bf48841bb62a0dd0a0bd04a01d28187f46e6dfff42fe"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/generated/runtime/launcher/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/generated/runtime/recipe.json": {
+          "hash": "2d53ffcac337c2a95b3a7ad5befbdcd7a0a0c0878d8d510037e1f664c3b4f7a0"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/instruction.md": {
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/task.toml": {
+          "hash": "c5c7296d9a3952d999efe20182e580bc0c8d532071c48bf20d955db951723ff3"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/tests/Dockerfile": {
+          "hash": "13d6355662882d2e7d2b43d9fa7208d53d3b42e9ee12452cdceb95926a9580ae"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/tests/evaluate.py": {
+          "hash": "f5e8f9038ec6e23548399f2f7dc16517558491cfa3432e5edbe4c83710a0d817"
+        },
+        "tasks/.stage-20260916T145147.187Z-40434/tests/test.sh": {
+          "hash": "cbecc78426114efd969398d32f8284eead161d4466f1284e8f7b6442d3bfb2a0"
+        },
+        "tasks/document-grounding/README.md": {
+          "hash": "fcae16c9ae59d15a8d997f36fd4c0a2850ee5c60ec5db6792e2e0addc403ddc9"
+        },
+        "tasks/document-grounding/environment/Dockerfile": {
+          "hash": "dad0448eaaa8bf6b7b2884c2e768f066c1e326d8dd4d23c7a05b38c503b9ba21"
+        },
+        "tasks/document-grounding/environment/anythingllm_adapter.js": {
+          "hash": "c1be699ad67acd9b9fc9d26277451abcbc070db438205427914f19802086d681"
+        },
+        "tasks/document-grounding/environment/relai_harbor/adapter/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "tasks/document-grounding/environment/scenario.json": {
+          "hash": "9df86883ecd9a46e886b7b46aa34f7dc40b86a8f605cefea4766ccf4fc7fccc3"
+        },
+        "tasks/document-grounding/environment/server/package.json": {
+          "hash": "07925ea90a0aa93ae8e1f925f6774727c4ef09d14b0e98b9bb42e0bc7e5021e0"
+        },
+        "tasks/document-grounding/environment/server/prisma/schema.prisma": {
+          "hash": "bdf2dcb190d74544fb0db2ccb20d9b1898883ebfa2ca86d8b9739410e0a2a7cd"
+        },
+        "tasks/document-grounding/environment/server/yarn.lock": {
+          "hash": "5e5284eb71f1b1446e4847637d4c3109d20c28fc7a2c625c22b7272c22d938a5"
+        },
+        "tasks/document-grounding/generated/build.json": {
+          "hash": "db356e30a1454fcd84c24634b199fff22ba83e6dd23aee86a354c44de7b66523"
+        },
+        "tasks/document-grounding/generated/dependencies.json": {
+          "hash": "3459af9ceb2aa801fd74ab349aca954dc397a2394d908cb446977c87b50fb8d6"
+        },
+        "tasks/document-grounding/generated/runtime/dependencies/server/package.json": {
+          "hash": "07925ea90a0aa93ae8e1f925f6774727c4ef09d14b0e98b9bb42e0bc7e5021e0"
+        },
+        "tasks/document-grounding/generated/runtime/dependencies/server/prisma/schema.prisma": {
+          "hash": "bdf2dcb190d74544fb0db2ccb20d9b1898883ebfa2ca86d8b9739410e0a2a7cd"
+        },
+        "tasks/document-grounding/generated/runtime/dependencies/server/yarn.lock": {
+          "hash": "5e5284eb71f1b1446e4847637d4c3109d20c28fc7a2c625c22b7272c22d938a5"
+        },
+        "tasks/document-grounding/generated/runtime/inputs/anythingllm_adapter.js": {
+          "hash": "c1be699ad67acd9b9fc9d26277451abcbc070db438205427914f19802086d681"
+        },
+        "tasks/document-grounding/generated/runtime/inputs/server/package.json": {
+          "hash": "07925ea90a0aa93ae8e1f925f6774727c4ef09d14b0e98b9bb42e0bc7e5021e0"
+        },
+        "tasks/document-grounding/generated/runtime/inputs/server/prisma/schema.prisma": {
+          "hash": "bdf2dcb190d74544fb0db2ccb20d9b1898883ebfa2ca86d8b9739410e0a2a7cd"
+        },
+        "tasks/document-grounding/generated/runtime/inputs/server/yarn.lock": {
+          "hash": "5e5284eb71f1b1446e4847637d4c3109d20c28fc7a2c625c22b7272c22d938a5"
+        },
+        "tasks/document-grounding/generated/runtime/launcher/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "tasks/document-grounding/generated/runtime/recipe.json": {
+          "hash": "3201a63d02ed634eaa329b89c4ccc7299456740bc4b4a5a6b255e7fb4936421d"
+        },
+        "tasks/document-grounding/instruction.md": {
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "tasks/document-grounding/task.toml": {
+          "hash": "fb7c0593f4df4de985bff5bbb934bafe848cb6adbc207b6351d234ba9b557d6b"
+        },
+        "tasks/document-grounding/tests/Dockerfile": {
+          "hash": "64e7a2eb23d1d82b6912fab9acb9c6c078414afd4249fc8d78a1d30f814a3095"
+        },
+        "tasks/document-grounding/tests/evaluate.py": {
+          "hash": "5f85d6da33ef425eda29965f1097b95cb4e596342373c2ee1918d70e123fe355"
+        },
+        "tasks/document-grounding/tests/reference.json": {
+          "hash": "a2df40075b4343fd80219622deae58525ff681377f3df6af2bccc8492073437f"
+        },
+        "tasks/document-grounding/tests/test.sh": {
+          "hash": "cbecc78426114efd969398d32f8284eead161d4466f1284e8f7b6442d3bfb2a0"
+        },
+        "tasks/smoke/README.md": {
+          "hash": "fcae16c9ae59d15a8d997f36fd4c0a2850ee5c60ec5db6792e2e0addc403ddc9"
+        },
+        "tasks/smoke/environment/Dockerfile": {
+          "hash": "dad0448eaaa8bf6b7b2884c2e768f066c1e326d8dd4d23c7a05b38c503b9ba21"
+        },
+        "tasks/smoke/environment/anythingllm_adapter.js": {
+          "hash": "f2fd67d098e557e514fa88d87a2ae27198c45f58030d89d5a8adcfae4d0ffdb0"
+        },
+        "tasks/smoke/environment/relai_harbor/adapter/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "tasks/smoke/environment/scenario.json": {
+          "hash": "85af610ae2a20ea78fa71a5b10de953b4dda209a5add9dc713c902369cc7e907"
+        },
+        "tasks/smoke/generated/build.json": {
+          "hash": "dbda79cd51ebb96cc9a81874276fbc2cb812f384eb90e42ac95330c50881a25f"
+        },
+        "tasks/smoke/generated/runtime/inputs/anythingllm_adapter.js": {
+          "hash": "f2fd67d098e557e514fa88d87a2ae27198c45f58030d89d5a8adcfae4d0ffdb0"
+        },
+        "tasks/smoke/generated/runtime/launcher/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "tasks/smoke/generated/runtime/recipe.json": {
+          "hash": "d68f4e5528a06ed8b4862f407613661e102cd0bfeea4af9d28170598e15160aa"
+        },
+        "tasks/smoke/instruction.md": {
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "tasks/smoke/relai-init-expectations.json": {
+          "hash": "bd5067989dd744198d72990ed93b9438362e98f4adc076571298b104991f8322"
+        },
+        "tasks/smoke/task.toml": {
+          "hash": "4b52a281cd5631755be21778d1f155862efed310d23e95a6a6ce52be6707128a"
+        },
+        "tasks/smoke/tests/Dockerfile": {
+          "hash": "13d6355662882d2e7d2b43d9fa7208d53d3b42e9ee12452cdceb95926a9580ae"
+        },
+        "tasks/smoke/tests/evaluate.py": {
+          "hash": "754fe88916290ae0eafcdb1589a073c18fc1e1b24d94a029fae3e231e2b227b6"
+        },
+        "tasks/smoke/tests/test.sh": {
+          "hash": "47a658c216fd2965d59f5d9224f91a0be97601c264104e7568b4ab1abdfa306c"
+        }
+      },
+      "holdout": {
+        "document-grounding/README.md": {
+          "hash": "fcae16c9ae59d15a8d997f36fd4c0a2850ee5c60ec5db6792e2e0addc403ddc9"
+        },
+        "document-grounding/environment/Dockerfile": {
+          "hash": "dad0448eaaa8bf6b7b2884c2e768f066c1e326d8dd4d23c7a05b38c503b9ba21"
+        },
+        "document-grounding/environment/anythingllm_adapter.js": {
+          "hash": "c1be699ad67acd9b9fc9d26277451abcbc070db438205427914f19802086d681"
+        },
+        "document-grounding/environment/relai_harbor/adapter/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "document-grounding/environment/scenario.json": {
+          "hash": "0e9ded5ed28c5b8c11fe14c9913c11e922b3b8a442b7a240a7fbf1bae0978302"
+        },
+        "document-grounding/environment/server/package.json": {
+          "hash": "07925ea90a0aa93ae8e1f925f6774727c4ef09d14b0e98b9bb42e0bc7e5021e0"
+        },
+        "document-grounding/environment/server/prisma/schema.prisma": {
+          "hash": "bdf2dcb190d74544fb0db2ccb20d9b1898883ebfa2ca86d8b9739410e0a2a7cd"
+        },
+        "document-grounding/environment/server/yarn.lock": {
+          "hash": "5e5284eb71f1b1446e4847637d4c3109d20c28fc7a2c625c22b7272c22d938a5"
+        },
+        "document-grounding/generated/build.json": {
+          "hash": "db356e30a1454fcd84c24634b199fff22ba83e6dd23aee86a354c44de7b66523"
+        },
+        "document-grounding/generated/dependencies.json": {
+          "hash": "3459af9ceb2aa801fd74ab349aca954dc397a2394d908cb446977c87b50fb8d6"
+        },
+        "document-grounding/generated/runtime/dependencies/server/package.json": {
+          "hash": "07925ea90a0aa93ae8e1f925f6774727c4ef09d14b0e98b9bb42e0bc7e5021e0"
+        },
+        "document-grounding/generated/runtime/dependencies/server/prisma/schema.prisma": {
+          "hash": "bdf2dcb190d74544fb0db2ccb20d9b1898883ebfa2ca86d8b9739410e0a2a7cd"
+        },
+        "document-grounding/generated/runtime/dependencies/server/yarn.lock": {
+          "hash": "5e5284eb71f1b1446e4847637d4c3109d20c28fc7a2c625c22b7272c22d938a5"
+        },
+        "document-grounding/generated/runtime/inputs/anythingllm_adapter.js": {
+          "hash": "c1be699ad67acd9b9fc9d26277451abcbc070db438205427914f19802086d681"
+        },
+        "document-grounding/generated/runtime/inputs/server/package.json": {
+          "hash": "07925ea90a0aa93ae8e1f925f6774727c4ef09d14b0e98b9bb42e0bc7e5021e0"
+        },
+        "document-grounding/generated/runtime/inputs/server/prisma/schema.prisma": {
+          "hash": "bdf2dcb190d74544fb0db2ccb20d9b1898883ebfa2ca86d8b9739410e0a2a7cd"
+        },
+        "document-grounding/generated/runtime/inputs/server/yarn.lock": {
+          "hash": "5e5284eb71f1b1446e4847637d4c3109d20c28fc7a2c625c22b7272c22d938a5"
+        },
+        "document-grounding/generated/runtime/launcher/run.py": {
+          "hash": "43f3692b78b79863a01b8038fc56558a08f55165af349e6d1bac2aaf35d53dea"
+        },
+        "document-grounding/generated/runtime/recipe.json": {
+          "hash": "3201a63d02ed634eaa329b89c4ccc7299456740bc4b4a5a6b255e7fb4936421d"
+        },
+        "document-grounding/instruction.md": {
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "document-grounding/task.toml": {
+          "hash": "50a52011914eaca63456e37c62cc03ac0533755d1a0d0f8ecf06ee8f4fe190a9"
+        },
+        "document-grounding/tests/Dockerfile": {
+          "hash": "64e7a2eb23d1d82b6912fab9acb9c6c078414afd4249fc8d78a1d30f814a3095"
+        },
+        "document-grounding/tests/evaluate.py": {
+          "hash": "5f85d6da33ef425eda29965f1097b95cb4e596342373c2ee1918d70e123fe355"
+        },
+        "document-grounding/tests/reference.json": {
+          "hash": "123fda22a8b46ff37fc5c3641251856839c4a7d3d821c976e318d289e77bf825"
+        },
+        "document-grounding/tests/test.sh": {
+          "hash": "cbecc78426114efd969398d32f8284eead161d4466f1284e8f7b6442d3bfb2a0"
+        }
+      },
+      "records": {
+        "tests/learning-environments/document-grounding.json": {
+          "hash": "273845516d2966bdf9ade77e2b07f8e9bfa04013530cce5de6cb05d1265ff072"
+        }
+      },
+      "runtime-manifest.json": {
+        "hash": "7e7d7d5bde0e7e0def8b3fbcdfeeb84a55940ac3d32ed924cb7f8b9f01405600"
+      },
+      "simulator.env.example": {
+        "hash": "19ac131e2c920a67d24b225863ae859b61dce355728ea5adbae32bdd4f6416ed"
+      },
+      "wiki": {
+        "index.md": {
+          "hash": "48a23a320829da9757163fde1d0d62337b82721190ebcd4f1265bea5867f4a26"
+        },
+        "requirements/abstain-when-document-evidence-is-missing.md": {
+          "hash": "11509c552c16cc1edf590f0c4a1ec91fd859be2918f13076b59bd554caf5b126"
+        },
+        "requirements/explain-conflicting-document-sources.md": {
+          "hash": "a82ce2ed3e4220017fa80eab12b3b70f6c3237d887e0c60cdb650a1efea855bf"
+        },
+        "requirements/provide-correct-cited-document-grounded-answers.md": {
+          "hash": "817d24fe762949c4c01e0e162af346edd39d85a21330a207afcb96f967efe146"
+        },
+        "requirements/request-clarification-for-ambiguous-questions.md": {
+          "hash": "9ab3b992eb38e6469898b3166c3bbe9f2ea1c8526d9c91e4f4cebf42f1cda609"
+        },
+        "requirements/retrieve-relevant-document-evidence.md": {
+          "hash": "4838068e8c64ad5561daa9f5b981e1c529fc9278a8e7902d92eca781fd6bed7d"
+        },
+        "requirements/treat-document-instructions-as-untrusted-content.md": {
+          "hash": "e45d9cae056b16ac34017a6196ee43c61555dc266f9011ed41c1e4f4166679bd"
+        },
+        "tests/learning-environments/document-grounding.md": {
+          "hash": "5fe62dc23d846510f262005adbc03781067a688a0de4da31e43cf1c9251cedf6"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# Browser UI and documentation are outside server-agent optimization.
+frontend/src/
+frontend/public/
+images/
+extras/
+# Bundled VM setup assets are not used by the document-grounding agent.
+open-computer/master/
+open-computer/assets/

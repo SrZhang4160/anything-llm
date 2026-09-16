@@ -24,3 +24,11 @@ Use `relai status` to inspect local versus published evaluation state. Use `rela
 Establish a real-model baseline before optimization. The first optimization run is capped at 12 total rollouts, with early stopping enabled. This is a rollout cap, not a monetary spending cap. Verify candidate changes against separate held-out variants and repository checks before accepting an improvement. Record actual scores and limitations; do not claim an improvement based on an execution-only smoke test.
 
 Recurring optimization requires a separately agreed schedule and budget. Proposed changes remain in review until explicitly approved for merge or deployment.
+
+## Measured baseline (2026-09-16)
+
+The production OpenAI agent using `gpt-4.1-nano` passed 2/6 training checks and 1/6 held-out checks. Both runs completed with real model responses and no evaluator errors. These are small deterministic regression checks, not an estimate of general answer quality. The adapter substitutes the external vector store with synthetic documents, so retrieval ranking is not measured. No optimized candidate has been measured yet.
+
+Local reports are `.relai/runs/document-grounding-baseline.json` and `.relai/runs/document-grounding-heldout-baseline.json`. The task is `.relai/harbor/tasks/document-grounding`; held-out variants are kept outside the training task directory.
+
+Set runtime `STORAGE_DIR=/app/server/storage` for the container's writable model cache. The local Harbor loader uses `scripts/relai_harbor_compat.py` to fall back to a read-only `cat` of the exact ATIF trajectory when Docker Desktop's copy operation fails on a read-only mount. It does not change evaluation scores or disable repository masking.
