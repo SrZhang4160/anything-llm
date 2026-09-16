@@ -1,10 +1,7 @@
 /* eslint-disable unused-imports/no-unused-vars */
-const { EventEmitter, setMaxListeners } = require("events");
+const { randomUUID } = require("crypto");
 const { APIError } = require("./error.js");
-const Providers = require("./providers/index.js");
-const { Telemetry } = require("../../../models/telemetry.js");
-const { v4 } = require("uuid");
-const { ToolReranker } = require("./utils/toolReranker.js");
+const { createRelaiAtifRecorder } = require("./relaiAtif.js");
 
 /**
  * AIbitat is a class that manages the conversation between agents.
@@ -13,7 +10,7 @@ const { ToolReranker } = require("./utils/toolReranker.js");
  * Guiding the chat through a graph of agents.
  */
 class AIbitat {
-  emitter = new EventEmitter();
+  emitter = new (require("events").EventEmitter)();
 
   /**
    * Temporary flag to skip the handleExecution function
@@ -117,6 +114,7 @@ class AIbitat {
     this.maxRounds = maxRounds;
     this.maxToolCalls = maxToolCalls;
     this.handlerProps = handlerProps;
+    this.relaiAtif = createRelaiAtifRecorder();
 
     this.defaultProvider = {
       provider,
@@ -127,7 +125,7 @@ class AIbitat {
 
     // Providers can register an abort listener per LLM request on the session
     // signal - lift the EventTarget warning threshold (0 = unlimited).
-    setMaxListeners(0, this.abortController.signal);
+    require("events").setMaxListeners(0, this.abortController.signal);
   }
 
   /**
@@ -503,6 +501,7 @@ class AIbitat {
     };
 
     this._chats.push(chat);
+    this.relaiAtif?.message(chat);
     this.emitter.emit("message", chat, this);
   }
 
@@ -909,37 +908,54 @@ ${this.getHistory({ to: route.to })
       }
     }
 
-    const messages = [
-      {
-        content: fromConfig.role,
-        role: "system",
-      },
-      ...chatHistory,
-    ];
-
     // get the functions that the node can call
     let functions = fromConfig.functions
       ?.map((name) => this.functions.get(this.#parseFunctionName(name)))
       .filter((a) => !!a);
 
     // Rerank tools based on user prompt if enabled
-    if (ToolReranker.isEnabled() && functions?.length) {
-      const toolReranker = new ToolReranker();
+    if (
+      functions?.length &&
+      require("./utils/toolReranker.js").ToolReranker.isEnabled()
+    ) {
+      const toolReranker =
+        new (require("./utils/toolReranker.js").ToolReranker)();
       if (userPrompt)
         functions = await toolReranker.rerank(userPrompt, functions);
     } else {
-      if (functions?.length > ToolReranker.defaultTopN) {
-        this.handlerProps.log?.(
-          `
+      if (functions?.length) {
+        const toolLimit = require("./utils/toolReranker.js").ToolReranker
+          .defaultTopN;
+        if (functions.length > toolLimit) {
+          this.handlerProps.log?.(
+            `
 
 \x1b[44m[HINT]\x1b[0m: You are injecting \x1b[0;93m${functions.length} tools\x1b[0m into every request.
 Consider enabling \x1b[0;93mIntelligent Skill Selection\x1b[0m to reduce token usage from tool call bloat by up to \x1b[0;93m80% per request\x1b[0m.
 https://docs.anythingllm.com/agent/intelligent-tool-selection
 
 `
-        );
+          );
+        }
       }
     }
+
+    const messages = [
+      {
+        content: fromConfig.role,
+        role: "system",
+      },
+    ];
+    const toolGuidance = functions
+      ?.map((fn) => fn.agentGuidance)
+      .filter((guidance) => typeof guidance === "string" && guidance.trim());
+    if (toolGuidance?.length) {
+      messages.push({
+        role: "system",
+        content: `Guidance for the tools available in this conversation:\n\n${toolGuidance.join("\n\n")}`,
+      });
+    }
+    messages.push(...chatHistory);
 
     // Re-evaluate model router before each turn if a resolver is attached.
     // This ensures routing rules are applied per-message, not just at initialization.
@@ -1029,7 +1045,7 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
     // Emit routing notification before the first completion so it appears above the response
     // and reset the usage accumulator so metrics only cover this run's completions.
     if (depth === 0) {
-      this?.flushRoutingMetadata?.(v4());
+      this?.flushRoutingMetadata?.(randomUUID());
       this.providerInstance.resetCumulativeUsage();
     }
 
@@ -1086,7 +1102,12 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
       );
 
       const result = await fn.handler(args);
-      Telemetry.sendTelemetry("agent_tool_call", { tool: name }, null, true);
+      require("../../../models/telemetry.js").Telemetry.sendTelemetry(
+        "agent_tool_call",
+        { tool: name },
+        null,
+        true
+      );
       this.emitter.emit("toolCallResult", {
         toolName: name,
         arguments: args,
@@ -1108,7 +1129,7 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
         this.handlerProps?.log?.(
           `${fn.caller} tool call resulted in direct output! Returning raw result as string. NO MORE TOOL CALLS WILL BE EXECUTED.`
         );
-        const directOutputUUID = completionStream?.uuid || v4();
+        const directOutputUUID = completionStream?.uuid || randomUUID();
         eventHandler?.("reportStreamEvent", {
           type: "fullTextResponse",
           uuid: directOutputUUID,
@@ -1154,7 +1175,7 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
       );
     }
 
-    const responseUuid = completionStream?.uuid || v4();
+    const responseUuid = completionStream?.uuid || randomUUID();
     eventHandler?.("reportStreamEvent", {
       type: "usageMetrics",
       uuid: responseUuid,
@@ -1187,7 +1208,7 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
     // Bail before any (further) LLM calls when the session was aborted mid-execution.
     if (this._aborted) return null;
     // Create a stable UUID at the start of execution for event correlation
-    if (!msgUUID) msgUUID = v4();
+    if (!msgUUID) msgUUID = randomUUID();
     const eventHandler = (type, data) => {
       this?.socket?.send(type, data);
     };
@@ -1253,7 +1274,12 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
       );
 
       const result = await fn.handler(args);
-      Telemetry.sendTelemetry("agent_tool_call", { tool: name }, null, true);
+      require("../../../models/telemetry.js").Telemetry.sendTelemetry(
+        "agent_tool_call",
+        { tool: name },
+        null,
+        true
+      );
       this.emitter.emit("toolCallResult", {
         toolName: name,
         arguments: args,
@@ -1418,7 +1444,10 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
    * @returns {Providers.OpenAIProvider} The provider instance.
    */
   getProviderForConfig(config) {
-    const provider = this.#buildProviderForConfig(config);
+    const provider =
+      typeof config?.provider === "object"
+        ? config.provider
+        : this.#buildProviderForConfig(config);
     // Record the slug the instance was built from so usage metrics can be
     // priced - pre-built instances (config.provider as an object) keep theirs.
     if (typeof config?.provider === "string")
@@ -1436,6 +1465,7 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
    */
   #buildProviderForConfig(config) {
     if (typeof config.provider === "object") return config.provider;
+    const Providers = require("./providers/index.js");
 
     switch (config.provider) {
       case "openai":
@@ -1524,7 +1554,8 @@ https://docs.anythingllm.com/agent/intelligent-tool-selection
   /**
    * Register a new function to be called by the AIbitat agents.
    * You are also required to specify the which node can call the function.
-   * @param functionConfig The function configuration.
+   * @param functionConfig The function configuration, optionally including
+   * agentGuidance that is shown only to agents with access to this function.
    */
   function(functionConfig) {
     this.functions.set(functionConfig.name, functionConfig);
